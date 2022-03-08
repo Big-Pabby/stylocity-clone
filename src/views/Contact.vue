@@ -188,6 +188,13 @@ export default {
                 flex-direction: column;
             }
         }
+
+        .img {
+            
+            img {
+                width: 300px;
+            }
+        }
     }
 }
 </style>

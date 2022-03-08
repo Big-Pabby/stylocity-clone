@@ -11,7 +11,7 @@
 
         <div class="architecture">
             <div class="heading">
-                <h1>Ephipany Products - Architecture</h1>
+                <h2>Ephipany Products - Architecture</h2>
             </div>
 
             <div class="journey">
@@ -174,6 +174,12 @@ export default {
 
                 .right {
                     flex-direction: column-reverse;
+                }
+            }
+
+            .heading {
+                img {
+                    width: 300px;
                 }
             }
         }

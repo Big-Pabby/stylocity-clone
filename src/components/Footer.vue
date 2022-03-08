@@ -69,6 +69,7 @@ footer {
     .row {
       flex-direction: row;
       margin-top: 20px;
+      font-size: 16px;
     }
   }
 }

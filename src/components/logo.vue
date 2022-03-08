@@ -17,4 +17,12 @@ export default {
     padding: 5px;
     margin-left: 10px;
 }
+@media(max-width: 960px) {
+    .logo {
+
+        h1 {
+            font-size: 16px;
+        }
+    }
+}
 </style>

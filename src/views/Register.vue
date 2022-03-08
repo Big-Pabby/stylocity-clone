@@ -26,7 +26,6 @@
                 <input type="password" id="confirmPassword" placeholder="Confirm Your Password" v-model="confirmPassword">
             </div>
         </form>
-        <div v-show="error" class="error">{{ this.errorMsg }}</div>
         <button @click.prevent="register" class="btn btn-green">Register</button>
         <h3>Login to your account? <router-link :to="{ name: 'Login'}">Login</router-link> </h3>
     </div>
@@ -34,7 +33,6 @@
 </template>
 
 <script>
-import { supabase } from '../supabase/init'
 
 export default {
     data() {
@@ -44,47 +42,8 @@ export default {
             lastName: "",
             password: "",
             confirmPassword: "",
-            error: null,
-            errorMsg: "",
-            router: useRouter(),
         }
     },
-
-    methods: {
-        register: async function() {
-            if(this.email !== "" || this.password !== "" || this.lastName !== "" || this.firstName !== "") {
-                if(this.password === this.confirmPassword) {
-                    try {
-                        const { error } = await supabase.auth.signUp({
-                            email : this.email.value,
-                            password: this.password.value,
-                            firstName: this.firstName.value,
-                            lastName: this.lastName.value
-                        })
-                        if(error) throw error
-                        router.push({ name: "Login" })
-                    }
-                    catch(error) {
-                        errorMsg.value = error.message
-                        setTimeout(() => {
-                            errorMsg.value = null;
-                        }, 5000)
-                    }
-                    return
-                }
-                this.error = true;
-                this.errorMsg.value = "Error: Passwords do not match";
-                setTimeout(() => {
-                    errorMsg.value = null;
-                }, 5000) 
-            }
-            this.error = true;
-            this.errorMsg.value = "Please fill out all the fields!";
-            setTimeout(() => {
-                errorMsg.value = null;
-            }, 5000)
-        },
-    }
 }
 </script>
 

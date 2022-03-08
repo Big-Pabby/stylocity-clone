@@ -190,6 +190,10 @@ import StoreSlide from '../components/storeSlide.vue'
         .showcase-content {
           margin-bottom: 50px;
           text-align: center;
+
+          img {
+            width: 250px;
+          }
         }
       }
     }
@@ -198,7 +202,7 @@ import StoreSlide from '../components/storeSlide.vue'
       flex-direction: column;
 
       p {
-        width: 400px;
+        width: 300px;
         font-size: 28px;
       }
     }

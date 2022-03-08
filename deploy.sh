@@ -20,6 +20,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:Big-Pabby/Big-Pabby.github.io.git main
 
 # if you are deploying to https://Big-Pabby.github.io/stylocity-clone
-git push -f git@github.com:Big-Pabby/stylocity-clone.git main:gh-pages
+git push -f git@github.com:Big-Pabby/stylocity-clone.git master:gh-pages
 
 cd -
