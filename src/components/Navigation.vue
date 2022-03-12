@@ -23,7 +23,7 @@
             </div>
         </div>
         <div v-show="onClickSearch" class="searchBar">
-            <input type="search" v-model="search" placeholder="Search Our Items">
+            <input type="search"  placeholder="Search Our Items">
         </div>
     </div>
 </template>
@@ -39,13 +39,10 @@ export default {
     data() {
         return {
             onClickSearch: false,
-            search: this.onSearchChange
         }
     },
     methods: {
-        onSearchChange(event) {
-            console.log(event.target.value)
-        }
+
     }
 }
 </script>

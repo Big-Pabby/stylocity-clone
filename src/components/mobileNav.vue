@@ -24,7 +24,7 @@
                   </v-list-item>
                 </router-link>
 
-                <router-link class="link" to="#" >
+                <router-link class="link" :to="{ name: 'Shop'}" >
                   <v-list-item>
                       <v-list-item-title>
                           Shop
