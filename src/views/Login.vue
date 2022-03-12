@@ -4,17 +4,19 @@
     <div class="login-details">
         <h2>Login</h2>
         <hr>
-        <form>
+        <form method="get">
             <div class="form">
                 <label for="email">Email address</label>
-                <input class="inp" type="email" id="email" placeholder="Your email" v-model="email">
+                <input class="inp" type="email" id="email" placeholder="Your email" v-model="email" required>
             </div>
+
             <div class="form">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Your password" v-model="password">
+                <input type="password" id="password" placeholder="Your password" v-model="password" required>
             </div>
+
+            <input type="submit" value="Login" class="btn btn-black">
         </form>
-        <button class="btn btn-green">Login</button>
         <h3>Don't have an account? <router-link  :to="{ name: 'Register'}">Register</router-link> </h3>
     </div>
 </div>
@@ -58,24 +60,21 @@ export default {
             margin: 15px 0;
         }
 
-        .btn-green {
-            background: #000;
-            border: none;
-            border-radius: 5px;
-            color: #fff;
-            margin: 20px 0;
-        }
-
         .form {
             display: flex;
             flex-direction: column;
             margin-bottom: 10px;
 
             input {
-                border: 1px solid #000;
+                border: 0;
+                border-bottom: 1px solid #000;
                 outline: none;
                 padding: 10px 5px;
                 background: #f3f3f3;
+            }
+
+            input:focus {
+                outline: none;
             }
         }
     }

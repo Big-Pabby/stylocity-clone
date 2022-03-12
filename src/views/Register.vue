@@ -1,32 +1,33 @@
 <template>
-<div class="login">
+<div class="register">
     <h1><i class="far fa-user"></i> Register For Your Account</h1>
-    <div class="login-details">
+    <div class="register-details">
         <h2>Register</h2>
         <hr>
         <form>
             <div class="form">
                 <label for="firstName">First Name</label>
-                <input type="text" id="firstName" placeholder="Your First Name" v-model="firstName">
+                <input type="text" id="firstName" placeholder="Your First Name" v-model="firstName" required>
             </div>
             <div class="form">
                 <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" placeholder="Your Last Name" v-model="lastName">
+                <input type="text" id="lastName" placeholder="Your Last Name" v-model="lastName" required>
             </div>
             <div class="form">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Your Email" v-model="email">
+                <input type="email" id="email" placeholder="Your Email" v-model="email" required>
             </div>
             <div class="form">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Your Password" v-model="password">
+                <input type="password" id="password" placeholder="Your Password" v-model="password" required>
             </div>
             <div class="form">
                 <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" placeholder="Confirm Your Password" v-model="confirmPassword">
+                <input type="password" id="confirmPassword" placeholder="Confirm Your Password" v-model="confirmPassword" required>
             </div>
+
+            <input type="submit" value="Register" class="btn btn-black">
         </form>
-        <button @click.prevent="register" class="btn btn-green">Register</button>
         <h3>Login to your account? <router-link :to="{ name: 'Login'}">Login</router-link> </h3>
     </div>
 </div>
@@ -48,7 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login {
+.register {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -62,7 +63,7 @@ export default {
         text-align: center;
     }
 
-    .login-details {
+    .register-details {
         width: 500px;
         margin-top: 20px;
         border-radius: 5px;
@@ -73,14 +74,6 @@ export default {
 
         hr {
             margin: 15px 0;
-        }
-
-        .btn-green {
-            background: #000;
-            border: none;
-            border-radius: 5px;
-            color: #fff;
-            margin: 20px 0;
         }
 
         .form {

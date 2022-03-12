@@ -1,6 +1,6 @@
 <template>
   <div class="mobilenav">
-      <v-btn outlined icon @click.stop="drawer = !drawer"><i class="fas fa-bars fa-1x"></i></v-btn>
+      <v-btn outlined icon @click.stop="drawer = !drawer"><i class="fas fa-bars fa-1x "></i></v-btn>
         <v-navigation-drawer
         v-model="drawer"
         absolute
@@ -16,35 +16,47 @@
                 v-model="group"
                 active-class="deep-purple--text text--accent-4"
                 >
-                <v-list-item>
-                    <v-list-item-title>
-                      <router-link class="link active" :to="{ name: 'Home'}">Home</router-link>
-                    </v-list-item-title>
-                </v-list-item>
+                <router-link class="link active" :to="{ name: 'Home'}">
+                  <v-list-item>
+                      <v-list-item-title>
+                        Home
+                      </v-list-item-title>
+                  </v-list-item>
+                </router-link>
 
-                <v-list-item>
-                    <v-list-item-title>
-                        <router-link class="link" to="#" >Shop</router-link>
-                    </v-list-item-title>
-                </v-list-item>
+                <router-link class="link" to="#" >
+                  <v-list-item>
+                      <v-list-item-title>
+                          Shop
+                      </v-list-item-title>
+                  </v-list-item>
+                </router-link>
 
-                <v-list-item>
-                    <v-list-item-title>
-                        <router-link class="link" :to="{ name: 'About'}" >About Us</router-link>
-                    </v-list-item-title>
-                </v-list-item>
+                <router-link class="link" :to="{ name: 'About'}" >
+                  <v-list-item>
+                      <v-list-item-title>
+                        About Us
+                      </v-list-item-title>
+                  </v-list-item>
+                </router-link>
 
-                <v-list-item>
-                    <v-list-item-title>
-                        <router-link class="link" :to="{ name: 'Contact'}" >Contact us</router-link>
-                    </v-list-item-title>
-                </v-list-item>
+                <router-link class="link" :to="{ name: 'Contact'}" >
+                  <v-list-item>
+                    
+                      <v-list-item-title>
+                        Contact us
+                      </v-list-item-title>
+                    
+                  </v-list-item>
+                </router-link>
 
-                <v-list-item>
-                    <v-list-item-title>
-                        <router-link class="link" :to="{ name: 'Login'}" >My Account</router-link>
-                    </v-list-item-title>
-                </v-list-item>
+                <router-link class="link" :to="{ name: 'Login'}" >
+                  <v-list-item>
+                      <v-list-item-title>
+                        My Account
+                      </v-list-item-title>
+                  </v-list-item>
+                </router-link>
                 </v-list-item-group>
             </v-list>
         </v-navigation-drawer>

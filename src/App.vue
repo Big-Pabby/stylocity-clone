@@ -1,6 +1,6 @@
 <template>
   <v-app class="app">
-    <Navigation />
+    <Navigation :searchChange="onSearchChange" />
     <router-view/>
     <Footer />
   </v-app>
@@ -15,8 +15,14 @@ export default {
   name: 'App',
 
   data: () => ({
-    //
+     searchfield: '',
   }),
+
+  methods: {
+    onSearchChange(event) {
+      console.log(event.target.value)
+    }
+  }
 };
 </script>
 
@@ -26,6 +32,11 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .app {
@@ -63,6 +74,7 @@ export default {
   .btn-black {
     background: #000;
     color: #fff;
+    border-radius: 5px;
     margin: 20px 0;
 
     &:hover {
