@@ -1,11 +1,12 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import About from '../views/About.vue'
-import Contact from '../views/Contact.vue'
-import Register from '../views/Register.vue'
-import Shop from '../views/Shop.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '../views/Home.vue';
+import Login from '../views/Login.vue';
+import About from '../views/About.vue';
+import Contact from '../views/Contact.vue';
+import Register from '../views/Register.vue';
+import Shop from '../views/Shop.vue';
+import Cart from '../views/Cart.vue'
 
 Vue.use(VueRouter)
 
@@ -44,6 +45,12 @@ const routes = [
     path: '/shop-items',
     name: 'Shop',
     component: Shop
+  },
+
+  {
+    path: '/Carts',
+    name: 'Cart',
+    component: Cart
   },
 
 ]

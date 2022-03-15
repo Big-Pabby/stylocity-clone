@@ -15,15 +15,16 @@
                 <i @click="onClickSearch = !onClickSearch" class="fas fa-search"></i>
                 <i class="far fa-heart"></i>
                 <i class="far fa-user"></i>
-                <i class="fas fa-shopping-cart"></i>
+                <router-link class="link active" :to="{ name: 'Cart'}"><i class="fas fa-shopping-cart">
+                    <span v-if="allCart.length != 0" v-show="cartItem">{{ allCart.length }}</span>
+                    </i></router-link>
             </div>
-
             <div class="mobile">
                 <mobileNav />
             </div>
         </div>
         <div v-show="onClickSearch" class="searchBar">
-            <input type="search"  placeholder="Search Our Items">
+            <input type="search" v-model="search"  placeholder="Search Our Items">
         </div>
     </div>
 </template>
@@ -31,14 +32,21 @@
 <script>
 import mobileNav from '../components/mobileNav.vue'
 import Logo from './logo.vue'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: 'Navigation',
     components: { mobileNav, Logo },
+    computed: {
+        ...mapGetters(['allProducts', 'searchField', 'allCart']),
+        
+    },
 
     data() {
         return {
             onClickSearch: false,
+            search: "",
+            cartItem: true,
         }
     },
     methods: {
@@ -49,6 +57,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
+
     .navBar {
         display: flex;
         justify-content: space-between;
@@ -74,20 +83,32 @@ export default {
         .icons {
             margin-right: 20px;
 
+
             i {
                 width: 40px;
                 transition: .5s ease-in;
+                position: relative;
 
                 &:hover {
                     color: #44ba9f;
                 }
             }
-        }
 
+            span {
+                font-size: 10px;
+                background: #44ba9f;
+                color: #fff;
+                padding: 3px;
+                border-radius: 50%;
+            }
+        }
+        
         .mobile {
             display: none;
         }
     }
+
+    
 
     .searchBar {
         width: 500px;

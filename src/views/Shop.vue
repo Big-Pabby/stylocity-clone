@@ -1,29 +1,25 @@
 <template>
   <div class="container shop">
-      <div v-for="Products in LTEProducts" :key="Products.id" class="card">
-          <img :src="require(`../assets/images/${Products.image}`)" alt="loading" />
-          <p>{{ Products.type }}</p>
-          <h2>{{ Products.name }}</h2>
-          <p>{{ Products.price }}</p>
-          <router-link class="btn btn-black link" to="#"><i class="fas fa-shopping-cart"></i> ADD TO CART</router-link>
+      <div v-for="Product in allProducts" :key="Product.id" class="card">
+          <img :src="require(`../assets/images/${Product.image}`)" alt="loading" />
+          <p>{{ Product.type }}</p>
+          <h2>{{ Product.name }}</h2>
+          <p>{{ Product.price }}</p>
+          <button v-on:click="addToCart(Product)" class="btn btn-black"><i class="fas fa-shopping-cart"></i> ADD TO CART</button>
       </div>
   </div>
 </template>
 
 <script>
-import { LteProducts } from '../ShoppingProducts'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: 'Shop',
-    data() {
-        return {
-            LTEProducts: LteProducts,
-        }
-    },
+    computed: mapGetters(['allProducts']),
 
     methods: {
-         
-    }
+        ...mapActions(["addToCart"]),
+    } 
 
     
 }
@@ -35,6 +31,8 @@ export default {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     margin-bottom: 50px;
+    align-items: center;
+    justify-content: center;
 
     .card {
         width: 300px;

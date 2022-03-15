@@ -92,8 +92,8 @@ export default {
 }
 
 @media (max-width: 960px) {
-    .login {
-        .login-details {
+    .register {
+        .register-details {
             width: 80%;
         }
     }
