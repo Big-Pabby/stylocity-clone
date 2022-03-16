@@ -4,7 +4,7 @@
           <img :src="require(`../assets/images/${Product.image}`)" alt="loading" />
           <p>{{ Product.type }}</p>
           <h2>{{ Product.name }}</h2>
-          <p>{{ Product.price }}</p>
+          <p>#{{ Product.price }}</p>
           <button v-on:click="addToCart(Product)" class="btn btn-black"><i class="fas fa-shopping-cart"></i> ADD TO CART</button>
       </div>
   </div>

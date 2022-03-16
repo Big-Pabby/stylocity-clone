@@ -81,5 +81,17 @@ export default {
       color: #fff;
     }
   }
+
+  .btn-green {
+    background: #44ba9f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin: 20px 0;
+
+    &:hover {
+      color: #fff;
+    }
+  }
 }
 </style>

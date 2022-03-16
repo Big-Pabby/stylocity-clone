@@ -4,56 +4,63 @@ const state = {
             id: 1,
             type: "LTE, T-Shirts",
             name: "All Stars Shirt",
-            price: "#6,100.00",
-            image: "display1.jpg"
+            price: 6100.00,
+            image: "display1.jpg",
+            quantity: 1
         },
     
         {
             id: 2,
             type: "Jackets, LTE",
             name: "Zip Down Jacket",
-            price: "#10,100.00",
-            image: "zip.jpg"
+            price: 10100.00,
+            image: "zip.jpg",
+            quantity: 1
         },
     
         {
             id: 3,
             type: "Joggers, LTE",
             name: "Joggers",
-            price: "#7,100.00",
-            image: "joggers.jpg"
+            price: 7100.00,
+            image: "joggers.jpg",
+            quantity: 1
         },
     
         {
             id: 4,
             type: "Caps, LTE",
             name: "Caps",
-            price: "#3,600.00",
-            image: "cap.jpg"
+            price: 3600.00,
+            image: "cap.jpg",
+            quantity: 1
         },
     
         {
             id: 5,
             type: "Crop, LTE, Sweatshirts, T-Shirts",
             name: "Crop Matrix Sweatshirt",
-            price: "#7,600.00",
-            image: "matrix.jpg"
+            price: 7600.00,
+            image: "matrix.jpg",
+            quantity: 1
         },
     
         {
             id: 6,
             type: " Crop, Jackets, LTE",
             name: "Crop Jackets",
-            price: "#9,100.00",
-            image: "jacket.jpg"
+            price: 9100.00,
+            image: "jacket.jpg",
+            quantity: 1
         },
         
         {
             id: 7,
             type: "LTE, T-Shirts",
             name: "Flare Shirt",
-            price: "#6,100.00",
-            image: "flare.jpg"
+            price: 6100.00,
+            image: "flare.jpg",
+            quantity: 1
         },
     ],
     Cart: [],
@@ -62,7 +69,14 @@ const state = {
 
 const getters = {
     allProducts: (state) => state.Products,
-    allCart: (state) => state.Cart
+    allCart: (state) => state.Cart,
+    cartTotalPrice: (state) => {
+        let total = 0;
+        state.Cart.forEach(item => {
+            total += item.price * item.quantity;
+        });
+        return total 
+    }
 };
 
 const actions = {
@@ -71,14 +85,38 @@ const actions = {
         commit('updateCart', cart)
     },
 
-    filterShop({ commit }, search) {
-        
+    removeCart({ commit }, cart) {
+        commit('deleteCart', cart)
+    },
+
+    increaseQuantity({ commit }, cart) {
+        commit('updateQuantity', cart)
     }
 };
 
 const mutations = {
-    updateCart: (state, cart) => state.Cart.push(cart)
+    updateCart: (state, cart) => {
+        let productInCart = state.Cart.find(item => {
+            return item.id === cart.id
+        });
+        if (productInCart) {
+            productInCart.quantity += 1;
+            return
+        }
+        state.Cart.push(cart)
+    },
+
+    deleteCart: (state, cart) => {
+        state.Cart = state.Cart.filter(item => {
+            return item.id !== cart.id
+        })
+    },
+
+    updateQuantity: (state, cart) => {
+        return state.Cart.quantity += cart.quantity.value
+    }
 };
+
 
 export default {
     state,
