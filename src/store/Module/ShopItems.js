@@ -76,7 +76,8 @@ const getters = {
             total += item.price * item.quantity;
         });
         return total 
-    }
+    },
+    viewProduct: (state) => state.productDetails,
 };
 
 const actions = {
@@ -88,10 +89,6 @@ const actions = {
     removeCart({ commit }, cart) {
         commit('deleteCart', cart)
     },
-
-    increaseQuantity({ commit }, cart) {
-        commit('updateQuantity', cart)
-    }
 };
 
 const mutations = {
@@ -111,10 +108,6 @@ const mutations = {
             return item.id !== cart.id
         })
     },
-
-    updateQuantity: (state, cart) => {
-        return state.Cart.quantity += cart.quantity.value
-    }
 };
 
 

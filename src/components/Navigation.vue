@@ -57,6 +57,8 @@ export default {
 
 <style lang="scss" scoped>
 .header {
+    background: #fff;
+    width: 100%;
 
     .navBar {
         display: flex;
@@ -134,6 +136,7 @@ export default {
 
 @media(max-width: 960px) {
     .header {
+
         .navBar {
             flex-direction: row;
 

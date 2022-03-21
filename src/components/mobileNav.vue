@@ -82,8 +82,13 @@ import logo from '../components/logo.vue'
 </script>
 
 <style lang="scss" scoped>
-.logo {
-  width: 130px;
-  margin: 20px auto;
+
+.mobilenav {
+
+  .logo {
+    width: 130px;
+    margin: 20px auto;
+    text-align: center;
+  }
 }
 </style>

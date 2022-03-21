@@ -23,27 +23,42 @@
             <div class="quantity">
               <i v-on:click="increaseQuantity(cart)" class="fas fa-plus"></i>
               <p>{{ cart.quantity }}</p>
-              <i class="fas fa-minus"></i>
+              <i v-on:click="decreaseQuantity(cart)" class="fas fa-minus"></i>
             </div>
           </div>
         </div>
       </div>
       <button class=" btn btn-black">Total Price: #{{ cartTotalPrice }}</button>
-      <button class="btn btn-green">COMPLETE YOUR ORDER</button>
+      <button @click="checkout" class="btn btn-green">PR0CEED TO CHECKOUT</button>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import swal from 'sweetalert'
 export default {
   name: 'Cart',
-  computed: mapGetters(['allCart', 'cartTotalPrice']),
+  computed: mapGetters(['allCart', 'cartTotalPrice',]),
   methods: {
-    ...mapActions(['removeCart', 'increaseQuantity']),
+    ...mapActions(['removeCart',]),
 
-    increaseQuantity () {
-      return this.allCart.quantity++
+    increaseQuantity (cart) {
+      if( cart.quantity >= 1) {
+        return cart.quantity++
+      }
+    },
+
+    decreaseQuantity (cart) {
+      if( cart.quantity > 1) {
+        return cart.quantity--
+      }
+    },
+    checkout() {
+      swal("Good Job!", "Your order is placed sucessfully!", "sucesss")
+        .then(value => {
+          window.location.href = "/shop-items"
+        });
     }
   }
 }
@@ -125,13 +140,15 @@ export default {
             color: #44ba9f;
 
             i {
+              background: #fff;
+              padding: 10px;
+              border-radius: 5px;
+              box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.19);
               cursor: pointer;
               transition: .5s ease-out;
 
               &:hover {
                 background: #f4f4f4;
-                padding: 5px;
-                border-radius: 50%;
               }
             }
 
