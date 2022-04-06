@@ -5,13 +5,13 @@
             <nav>
                 <ul>
                     <router-link class="link active" :to="{ name: 'Home'}">Home</router-link>
-                    <router-link class="link" :to="{ name: 'Shop'}" >Shop</router-link>
+                    <router-link v-show="loggedOut" class="link" :to="{ name: 'Shop'}" >Store</router-link>
                     <router-link class="link"  :to="{ name: 'About'}" >About Us</router-link>
                     <router-link class="link" :to="{ name: 'Contact'}" >Contact us</router-link>
-                    <router-link class="link" :to="{ name: 'Login'}">My account</router-link>
+                    <router-link v-show="!loggedOut" class="link" :to="{ name: 'Login'}">My account</router-link>
                 </ul>
             </nav>
-            <div class="icons">
+            <div class="icons" v-show="loggedOut">
                 <i @click="onClickSearch = !onClickSearch" class="fas fa-search"></i>
                 <i class="far fa-heart"></i>
                 <i class="far fa-user"></i>
@@ -19,12 +19,13 @@
                     <span v-if="allCart.length != 0" v-show="cartItem">{{ allCart.length }}</span>
                     </i></router-link>
             </div>
+            <button class="btn btn-green" v-show="loggedOut" @click="logOut">Logout</button>
             <div class="mobile">
                 <mobileNav />
             </div>
         </div>
         <div v-show="onClickSearch" class="searchBar">
-            <input type="search" v-model="search"  placeholder="Search Our Items">
+            <input @change="searchChange"  placeholder="Search Our Items">
         </div>
     </div>
 </template>
@@ -38,19 +39,19 @@ export default {
     name: 'Navigation',
     components: { mobileNav, Logo },
     computed: {
-        ...mapGetters(['allProducts', 'searchField', 'allCart']),
-        
+        ...mapGetters(['loggedOut', 'searchField', 'allCart']),   
     },
 
     data() {
         return {
             onClickSearch: false,
-            search: "",
+            search: '',
             cartItem: true,
         }
     },
     methods: {
-
+        ...mapActions(['searchChange', 'logOut']),
+        
     }
 }
 </script>
@@ -64,7 +65,8 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 10px 0;
+        width: 90%;
+        margin: 10px auto;
 
         nav {
             ul {

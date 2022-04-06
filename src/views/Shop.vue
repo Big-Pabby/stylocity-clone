@@ -1,5 +1,9 @@
 <template>
-  <div class="container shop">
+<div>
+    <div v-if="allProducts.length === 0" class="msg">
+          <h2>The product does not exists...</h2>
+    </div>
+    <div v-else class="container shop">
       <div v-for="Product in allProducts" :key="Product.id" class="card">
           <img :src="require(`../assets/images/${Product.image}`)" alt="loading" />
           <p>{{ Product.type }}</p>
@@ -8,6 +12,8 @@
           <button v-on:click="addToCart(Product)" class="btn btn-black"><i class="fas fa-shopping-cart"></i> ADD TO CART</button>
       </div>
   </div>
+</div>
+  
 </template>
 
 <script>
@@ -15,7 +21,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: 'Shop',
-    computed: mapGetters(['allProducts']),
+    computed: mapGetters(['allProducts', 'filterShop']),
 
     methods: {
         ...mapActions(["addToCart"]),
@@ -26,6 +32,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.msg {
+    height: 50vh;
+    text-align: center;
+    margin: auto;
+}
 .shop {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

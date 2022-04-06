@@ -2,7 +2,7 @@
   <div class="cart-page">
     <div v-if="allCart.length === 0" class="empty">
       <h3>Your Cart Is Empty...</h3>
-      <p>Go to shop to add to cart</p><router-link class=" btn btn-black link" :to="{ name: 'Shop'}" >Shop</router-link>
+      <p>Go to store to add to cart</p><router-link class=" btn btn-black link" :to="{ name: 'Shop'}" >Store</router-link>
     </div>
     <div v-else class="flex-container" >
       <div class="grid container">

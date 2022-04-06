@@ -4,7 +4,7 @@
     <div class="register-details">
         <h2>Register</h2>
         <hr>
-        <form>
+        <form @submit.prevent="onRegister()">
             <div class="form">
                 <label for="firstName">First Name</label>
                 <input type="text" id="firstName" placeholder="Your First Name" v-model="firstName" required>
@@ -24,6 +24,7 @@
             <div class="form">
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" id="confirmPassword" placeholder="Confirm Your Password" v-model="confirmPassword" required>
+                <p v-show="errorMsg">Password is Incorrect!!!</p>
             </div>
 
             <input type="submit" value="Register" class="btn btn-black">
@@ -34,6 +35,7 @@
 </template>
 
 <script>
+import swal from 'sweetalert'
 
 export default {
     data() {
@@ -43,8 +45,40 @@ export default {
             lastName: "",
             password: "",
             confirmPassword: "",
+            errorMsg: false
         }
     },
+
+    methods: {
+        async onRegister() {
+            if(this.password === this.confirmPassword) {
+                const res = await fetch('http://localhost:3001/register', {
+                    method: 'post',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        firstName: this.firstName,
+                        lastName: this.lastName,
+                        email: this.email,
+                        password: this.password
+                    })
+                })
+                const user = res.json();
+                if(user) {
+                    swal("Your registration was a sucesss!!", "Login to your account", "successs")
+                    .then(value => {
+                    window.location.href = "/login"
+                    });
+                }
+
+            } else {
+                this.errorMsg = true
+               setTimeout(() => {
+                   this.errorMsg = false
+               }, 5000)
+               
+            }
+        }
+    }
 }
 </script>
 
@@ -55,7 +89,7 @@ export default {
     justify-content: center;
     align-items: center;
     background: #f4f4f4;
-    margin-bottom: 30px;
+    padding: 30px;
 
     h1 {
         margin-top: 30px;
@@ -86,6 +120,11 @@ export default {
                 outline: none;
                 padding: 10px 5px;
                 background: #f4f4f4;
+            }
+
+            p {
+                color: red;
+                margin-bottom: 0;
             }
         }
     }

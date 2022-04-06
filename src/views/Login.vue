@@ -4,7 +4,7 @@
     <div class="login-details">
         <h2>Login</h2>
         <hr>
-        <form method="get">
+        <form @submit.prevent="onLogin()">
             <div class="form">
                 <label for="email">Email address</label>
                 <input class="inp" type="email" id="email" placeholder="Your email" v-model="email" required>
@@ -17,17 +17,50 @@
 
             <input type="submit" value="Login" class="btn btn-black">
         </form>
+        <p v-show="errorMsg">Invalid email or password!!!</p>
         <h3>Don't have an account? <router-link  :to="{ name: 'Register'}">Register</router-link> </h3>
     </div>
 </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+import swal from 'sweetalert'
+
 export default {
     data() {
         return {
             email: "",
             password: "",
+            errorMsg: false,
+        }
+    },
+
+    methods: {
+        ...mapActions(['SucessfulLogin',]),
+
+        onLogin() {
+            fetch('http://localhost:3001/login', {
+                method: 'post',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    email: this.email,
+                    password: this.password
+                })
+            })
+            .then( res => res.json())
+            .then(userData => {
+                if(userData !== 'error loggin in') {
+                    this.SucessfulLogin(userData)
+                    swal("Login Sucessful!!!", `Welcome ${userData.firstName} ${userData.lastName}`, "successs")
+                } else {
+                    this.errorMsg = true;
+                    setTimeout(() => {
+                        this.errorMsg = false
+                    }, 5000)
+                }
+
+            })
         }
     }
 
@@ -40,8 +73,8 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 85vh;
     background: #f4f4f4;
+    padding: 30px 0;
 
     h1 {
         color: #000;
@@ -76,6 +109,9 @@ export default {
             input:focus {
                 outline: none;
             }
+        }
+        p {
+            color: red;
         }
     }
 }

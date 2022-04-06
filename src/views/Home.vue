@@ -47,12 +47,7 @@
 
     <StoreSlide/>
 
-    <Progress />
-
-    <div class="register">
-      <p>View Our store by registering for your free account today!! </p>
-      <router-link class="link btn btn-black" :to="{ name: 'Register'}">register now <v-icon class="icon">mdi-arrow-right</v-icon></router-link>
-    </div>
+    <Progress class="progress" />
 
   </div>
 </template>
@@ -134,27 +129,8 @@ import StoreSlide from '../components/storeSlide.vue'
     }
   }
 
-  .register {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: #ccc;
-    text-transform: uppercase;
-    height: 300px;
-
-    p {
-      font-size: 32px;
-      text-align: center;
-      width: 600px;
-    }
-
-    .btn-black {
-      border-radius: 50px;
-
-      .icon {
-        color: #fff;
-      }
-    }
+  .progress {
+    margin-bottom: 25px;
   }
 }
 
@@ -195,15 +171,6 @@ import StoreSlide from '../components/storeSlide.vue'
             width: 250px;
           }
         }
-      }
-    }
-
-    .register {
-      flex-direction: column;
-
-      p {
-        width: 300px;
-        font-size: 28px;
       }
     }
   }

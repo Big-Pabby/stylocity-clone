@@ -68,7 +68,9 @@ const state = {
 };
 
 const getters = {
-    allProducts: (state) => state.Products,
+    allProducts: (state) => state.Products.filter(products => {
+        return products.type.toLowerCase().includes(state.searchField.toLowerCase())
+    }),
     allCart: (state) => state.Cart,
     cartTotalPrice: (state) => {
         let total = 0;
@@ -76,6 +78,11 @@ const getters = {
             total += item.price * item.quantity;
         });
         return total 
+    },
+    filterShop: (state) => {
+        state.Products.filter(products => {
+            return products.name.toLowerCase().includes(state.searchField.toLowerCase())
+        })
     },
     viewProduct: (state) => state.productDetails,
 };
@@ -88,6 +95,9 @@ const actions = {
 
     removeCart({ commit }, cart) {
         commit('deleteCart', cart)
+    },
+    searchChange({ commit }, event) {
+        commit ('onSearchChange', event)
     },
 };
 
@@ -108,6 +118,9 @@ const mutations = {
             return item.id !== cart.id
         })
     },
+    onSearchChange: (state, event) => {
+        state.searchField = event.target.value
+    }
 };
 
 

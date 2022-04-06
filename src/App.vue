@@ -1,7 +1,8 @@
 <template>
   <v-app class="app">
-    <Navigation :searchChange="onSearchChange" />
-    <router-view/>
+    <Navigation :user = user />
+    <router-view />
+    <Register />
     <Footer />
   </v-app>
 </template>
@@ -9,19 +10,23 @@
 <script>
 import Navigation from './components/Navigation.vue';
 import Footer from './components/Footer.vue';
+import Register from './components/Registertext.vue'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  components: { Navigation, Footer },
+  components: { Navigation, Footer, Register },
   name: 'App',
 
-  data: () => ({
-     searchfield: '',
-  }),
-
-  methods: {
-    onSearchChange(event) {
-      console.log(event.target.value)
+  data() {
+    return {
+      onSearch: false,
+      user: false,
     }
+  },
+  
+  methods: {
+    ...mapActions(['searchChange',]),
+
   }
 };
 </script>

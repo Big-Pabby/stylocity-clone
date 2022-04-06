@@ -59,7 +59,7 @@
       </div>
     </v-carousel-item>
   </v-carousel>
-  <button class="btn btn-black">View Store <v-icon class="icon">mdi-arrow-right</v-icon></button>
+  <router-link :to="{ name: 'Shop'}" class="btn btn-black" >View Store <v-icon class="icon">mdi-arrow-right</v-icon></router-link>
 </div>
 </template>
 
