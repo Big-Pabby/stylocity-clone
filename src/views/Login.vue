@@ -52,7 +52,10 @@ export default {
             .then(userData => {
                 if(userData !== 'error loggin in') {
                     this.SucessfulLogin(userData)
-                    swal("Login Sucessful!!!", `Welcome ${userData.firstName} ${userData.lastName}`, "successs")
+                    swal("Login Sucessful!!!", `Welcome ${userData.firstname} ${userData.lastname}`, "successs")
+                    .then(value => {
+                    this.$router.push({ path: '/home'}) 
+                    });
                 } else {
                     this.errorMsg = true;
                     setTimeout(() => {

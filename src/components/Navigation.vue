@@ -11,10 +11,10 @@
                     <router-link v-show="!loggedOut" class="link" :to="{ name: 'Login'}">My account</router-link>
                 </ul>
             </nav>
-            <div class="icons" v-show="loggedOut">
+            <div class="icons">
                 <i @click="onClickSearch = !onClickSearch" class="fas fa-search"></i>
                 <i class="far fa-heart"></i>
-                <i class="far fa-user"></i>
+                <router-link :to="{ name: 'UserProfile'}"><i class="far fa-user"></i></router-link>
                 <router-link class="link active" :to="{ name: 'Cart'}"><i class="fas fa-shopping-cart">
                     <span v-if="allCart.length != 0" v-show="cartItem">{{ allCart.length }}</span>
                     </i></router-link>

@@ -70,6 +70,7 @@ const state = {
 const getters = {
     allProducts: (state) => state.Products.filter(products => {
         return products.type.toLowerCase().includes(state.searchField.toLowerCase())
+        
     }),
     allCart: (state) => state.Cart,
     cartTotalPrice: (state) => {
@@ -97,6 +98,7 @@ const actions = {
         commit('deleteCart', cart)
     },
     searchChange({ commit }, event) {
+        this.$router.push({ path: '/shop-items'})
         commit ('onSearchChange', event)
     },
 };
@@ -120,6 +122,7 @@ const mutations = {
     },
     onSearchChange: (state, event) => {
         state.searchField = event.target.value
+        this.$router.push({ path: '/shop-items'})
     }
 };
 

@@ -24,7 +24,7 @@ const mutations = {
     },
     SignOut: (state) => {
         return state.logUser = false,
-        window.location.href = "/login"
+        this.$router.push({ path: '/home'})
     },
 };
 

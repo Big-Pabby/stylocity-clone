@@ -66,7 +66,7 @@ export default {
                 if(user) {
                     swal("Your registration was a sucesss!!", "Login to your account", "successs")
                     .then(value => {
-                    window.location.href = "/login"
+                    this.$router.push({ path: '/login'})
                     });
                 }
 

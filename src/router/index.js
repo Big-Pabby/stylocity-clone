@@ -6,7 +6,8 @@ import About from '../views/About.vue';
 import Contact from '../views/Contact.vue';
 import Register from '../views/Register.vue';
 import Shop from '../views/Shop.vue';
-import Cart from '../views/Cart.vue'
+import Cart from '../views/Cart.vue';
+import UserProfile from '../views/UserProfile.vue'
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,12 @@ const routes = [
     path: '/Carts',
     name: 'Cart',
     component: Cart
+  },
+
+  {
+    path: '/your-profile',
+    name: 'UserProfile',
+    component: UserProfile
   },
 
 ]
