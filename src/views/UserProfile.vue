@@ -1,8 +1,9 @@
 <template>
     <div class="user-profile container">
-        <h1>Welcome Victor Adekunle, Thank you for being a part of epiphany community. We love you!!!</h1>
+        <h3 class="text-heading">Welcome Victor Adekunle, Thank you for being a part of epiphany community. We love you!!!</h3>
         <div class="edit-profile">
-            <h2>Edit Your Profile</h2>
+            <img src="../assets/images/profile.svg" alt="">
+            <h2>Your Profile</h2>
             <form >
                 <div class="form">
                     <label for="firstName">First Name</label>
@@ -16,7 +17,7 @@
                     <label for="email">Email</label>
                     <input type="email" placeholder="Edit Email">
                 </div>
-                <input type="submit" value="submit" class="btn btn-black">
+                <input type="submit" value="Change setting" class="btn btn-black">
             </form>
         </div>
     </div>
@@ -30,18 +31,23 @@ export default {
 
 <style lang="scss" scoped>
 .user-profile {
-    h1 {
+    .text-heading {
         text-align: center;
+        background: #000000;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 50px;
+        margin-top: 30px;
     }
     .edit-profile {
         width: 70%;
-        background: #44ba9f;
         margin: 10px auto;
         padding: 30px 0;
         border-radius: 10px;
 
         h2{
             text-align: center;
+            font-size: 30px;
         }
 
         form {
@@ -54,6 +60,10 @@ export default {
                 display: flex;
                 flex-direction: column;
                 margin-bottom: 10px;
+
+                label {
+                    font-size: 18px;
+                }
 
                 input {
                     width: 400px;
@@ -69,6 +79,14 @@ export default {
                     outline: none;
                 }
             }
+        }
+    }
+}
+
+@media(max-width: 500px) {
+    .edit-profile {
+        img {
+            width: 300px;
         }
     }
 }
