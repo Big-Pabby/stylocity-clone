@@ -1,9 +1,11 @@
 const state = {
-    logUser: false
+    logUser: false,
+    user: [],
 };
 
 const getters = {
     loggedOut: (state) => state.logUser,
+    getUser: (state) => state.user,
 };
 
 const actions = {
@@ -19,12 +21,14 @@ const actions = {
 const mutations = {
     showShop: (state, userData) => {
         if(userData !== 'error loggin in') {
-            return state.logUser = true
+            state.logUser = true;
+            state.user = userData
         }
     },
+    userDetails: (state, userData) => state.user.push(userData),
+
     SignOut: (state) => {
-        return state.logUser = false,
-        this.$router.push({ path: '/home'})
+        state.logUser = false
     },
 };
 

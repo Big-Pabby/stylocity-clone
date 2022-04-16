@@ -1,9 +1,12 @@
 <template>
     <div class="user-profile container">
-        <h3 class="text-heading">Welcome Victor Adekunle, Thank you for being a part of epiphany community. We love you!!!</h3>
+        <h3 class="text-heading">Welcome {{getUser.firstname}} {{getUser.lastname}}, Thank you for being a part of epiphany community. We love you!!!</h3>
+        <div class="image">
+            <img src="../assets/images/profile.svg" width="400px" alt="">
+        </div>
         <div class="edit-profile">
-            <img src="../assets/images/profile.svg" alt="">
-            <h2>Your Profile</h2>
+            
+            <h2>Account Settings</h2>
             <form >
                 <div class="form">
                     <label for="firstName">First Name</label>
@@ -17,15 +20,19 @@
                     <label for="email">Email</label>
                     <input type="email" placeholder="Edit Email">
                 </div>
-                <input type="submit" value="Change setting" class="btn btn-black">
+                <input type="submit" value="Save Changes" class="btn btn-black">
             </form>
         </div>
     </div>
 </template>
 
 <script>
-export default {
+import { mapGetters, mapActions } from 'vuex'
 
+export default {
+    computed: {
+        ...mapGetters(['getUser']),   
+    },
 }
 </script>
 
@@ -37,10 +44,17 @@ export default {
         color: #fff;
         padding: 10px 20px;
         border-radius: 50px;
-        margin-top: 30px;
+        margin: 30px 0;
     }
+
+    .image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
     .edit-profile {
-        width: 70%;
+        align-items: center;
         margin: 10px auto;
         padding: 30px 0;
         border-radius: 10px;
@@ -59,7 +73,7 @@ export default {
             .form {
                 display: flex;
                 flex-direction: column;
-                margin-bottom: 10px;
+                margin: 20px 0;
 
                 label {
                     font-size: 18px;
@@ -84,9 +98,23 @@ export default {
 }
 
 @media(max-width: 500px) {
-    .edit-profile {
+    .user-profile {
+
+        .text-heading {
+            font-size: 15px;
+        }
         img {
             width: 300px;
+        }
+
+        .edit-profile {
+            form {
+                .form {
+                    input {
+                        width: 300px;
+                    }
+                }
+            }
         }
     }
 }

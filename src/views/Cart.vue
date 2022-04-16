@@ -21,9 +21,9 @@
               <span @click="removeCart(cart)"><i class="fas fa-trash"></i>REMOVE</span>
             </div>
             <div class="quantity">
-              <i v-on:click="increaseQuantity(cart)" class="fas fa-plus"></i>
+              <i v-on:click="increaseCart(cart)" class="fas fa-plus"></i>
               <p>{{ cart.quantity }}</p>
-              <i v-on:click="decreaseQuantity(cart)" class="fas fa-minus"></i>
+              <i v-on:click="decreaseCart(cart)" class="fas fa-minus"></i>
             </div>
           </div>
         </div>
@@ -41,23 +41,12 @@ export default {
   name: 'Cart',
   computed: mapGetters(['allCart', 'cartTotalPrice',]),
   methods: {
-    ...mapActions(['removeCart',]),
+    ...mapActions(['removeCart', 'increaseCart', 'decreaseCart']),
 
-    increaseQuantity (cart) {
-      if( cart.quantity >= 1) {
-        return cart.quantity++
-      }
-    },
-
-    decreaseQuantity (cart) {
-      if( cart.quantity > 1) {
-        return cart.quantity--
-      }
-    },
     checkout() {
       swal("Good Job!", "Your order is placed sucessfully!", "sucesss")
         .then(value => {
-          window.location.href = "/shop-items"
+          this.$router.push({ path: '/shop-items'})
         });
     }
   }
@@ -176,6 +165,14 @@ export default {
 
         .cartItem {
           width: 100%;
+
+          .footer {
+            .icons {
+              span {
+                font-size: 14px;
+              }
+            }
+          }
         }
       }
     }

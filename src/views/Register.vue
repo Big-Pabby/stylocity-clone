@@ -1,5 +1,6 @@
 <template>
 <div class="register">
+    <img src="../assets/images/login.svg" width="300px" alt="">
     <h1><i class="far fa-user"></i> Register For Your Account</h1>
     <div class="register-details">
         <h2>Register</h2>
@@ -132,6 +133,10 @@ export default {
 
 @media (max-width: 960px) {
     .register {
+        img {
+            margin-bottom: 10px;
+            width: 200px;
+        }
         .register-details {
             width: 80%;
         }

@@ -1,3 +1,5 @@
+import store from "..";
+
 const state = {
     Products : [
         {
@@ -65,14 +67,21 @@ const state = {
     ],
     Cart: [],
     searchField: '',
+
 };
 
 const getters = {
+    
     allProducts: (state) => state.Products.filter(products => {
-        return products.type.toLowerCase().includes(state.searchField.toLowerCase())
-        
+        if(state.searchField === ''){
+            return products
+        } else {
+            return products.type.toLowerCase().includes(state.searchField.toLowerCase())
+        }    
     }),
+
     allCart: (state) => state.Cart,
+
     cartTotalPrice: (state) => {
         let total = 0;
         state.Cart.forEach(item => {
@@ -80,12 +89,7 @@ const getters = {
         });
         return total 
     },
-    filterShop: (state) => {
-        state.Products.filter(products => {
-            return products.name.toLowerCase().includes(state.searchField.toLowerCase())
-        })
-    },
-    viewProduct: (state) => state.productDetails,
+    search: (state) => state.searchField,
 };
 
 const actions = {
@@ -98,9 +102,14 @@ const actions = {
         commit('deleteCart', cart)
     },
     searchChange({ commit }, event) {
-        this.$router.push({ path: '/shop-items'})
         commit ('onSearchChange', event)
     },
+    increaseCart({ commit }, cart) {
+        commit ('increment', cart)
+    },
+    decreaseCart({ commit }, cart) {
+        commit ('decrement', cart)
+    }
 };
 
 const mutations = {
@@ -115,6 +124,18 @@ const mutations = {
         state.Cart.push(cart)
     },
 
+    increment: (state, cart) => {
+        if(cart.quantity >=1) {
+            state.Cart.quantity = cart.quantity++
+        }
+    },
+
+    decrement: (state, cart) => {
+        if(cart.quantity > 1) {
+            state.Cart.quantity = cart.quantity--
+        }
+    },
+
     deleteCart: (state, cart) => {
         state.Cart = state.Cart.filter(item => {
             return item.id !== cart.id
@@ -122,8 +143,7 @@ const mutations = {
     },
     onSearchChange: (state, event) => {
         state.searchField = event.target.value
-        this.$router.push({ path: '/shop-items'})
-    }
+    },
 };
 
 

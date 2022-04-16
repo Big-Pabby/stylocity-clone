@@ -21,7 +21,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: 'Shop',
-    computed: mapGetters(['allProducts', 'filterShop']),
+    computed: mapGetters(['allProducts', 'search', 'filterProducts']),
 
     methods: {
         ...mapActions(["addToCart"]),

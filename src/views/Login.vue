@@ -1,5 +1,6 @@
 <template>
 <div class="login">
+    <img src="../assets/images/login.svg" width="300px" alt="">
     <h1><i class="far fa-user"></i> My Account</h1>
     <div class="login-details">
         <h2>Login</h2>
@@ -121,6 +122,9 @@ export default {
 
 @media (max-width: 960px) {
     .login {
+        img {
+            width: 200px;
+        }
         .login-details {
             width: 80%;
         }

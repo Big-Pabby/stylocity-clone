@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Carousel />
+    <Carousel class="carousel" />
     <div class="offers">
       <div class="offer">
         <i class="fas fa-tshirt fa-2x"></i>

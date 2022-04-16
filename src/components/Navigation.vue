@@ -11,19 +11,21 @@
                     <router-link v-show="!loggedOut" class="link" :to="{ name: 'Login'}">My account</router-link>
                 </ul>
             </nav>
-            <div class="icons">
+            <div class="icons" v-show="loggedOut">
                 <i @click="onClickSearch = !onClickSearch" class="fas fa-search"></i>
-                <i class="far fa-heart"></i>
-                <router-link :to="{ name: 'UserProfile'}"><i class="far fa-user"></i></router-link>
+                <i class="far fa-heart"></i>    
+                <i @click="showProfile = !showProfile" class="far fa-user"></i>
                 <router-link class="link active" :to="{ name: 'Cart'}"><i class="fas fa-shopping-cart">
                     <span v-if="allCart.length != 0" v-show="cartItem">{{ allCart.length }}</span>
                     </i></router-link>
             </div>
-            <button class="btn btn-green" v-show="loggedOut" @click="logOut">Logout</button>
             <div class="mobile">
                 <mobileNav />
             </div>
         </div>
+        
+        <profileMenu v-show="showProfile" :logOutUser="logOutUser" />
+        
         <div v-show="onClickSearch" class="searchBar">
             <input @change="searchChange"  placeholder="Search Our Items">
         </div>
@@ -33,11 +35,12 @@
 <script>
 import mobileNav from '../components/mobileNav.vue'
 import Logo from './logo.vue'
+import profileMenu from './profileMenu.vue'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: 'Navigation',
-    components: { mobileNav, Logo },
+    components: { mobileNav, Logo, profileMenu },
     computed: {
         ...mapGetters(['loggedOut', 'searchField', 'allCart']),   
     },
@@ -47,10 +50,18 @@ export default {
             onClickSearch: false,
             search: '',
             cartItem: true,
+            showProfile: false,
         }
     },
     methods: {
         ...mapActions(['searchChange', 'logOut']),
+
+        logOutUser () {
+            this.$store.dispatch('logOut').then(
+                this.showProfile = false,
+                this.$router.push({ path: '/login'})
+            )
+        },
         
     }
 }
@@ -97,6 +108,10 @@ export default {
                     color: #44ba9f;
                 }
             }
+            .setting {
+                display: flex;
+                flex-direction: column;
+            }
 
             span {
                 font-size: 10px;
@@ -134,6 +149,7 @@ export default {
             }
         }
     }
+
 }
 
 @media(max-width: 960px) {

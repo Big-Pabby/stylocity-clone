@@ -24,7 +24,7 @@
                   </v-list-item>
                 </router-link>
 
-                <router-link class="link" :to="{ name: 'Shop'}" >
+                <router-link v-show="loggedOut" class="link" :to="{ name: 'Shop'}" >
                   <v-list-item>
                       <v-list-item-title>
                           Store
@@ -65,9 +65,14 @@
 
 <script>
 import logo from '../components/logo.vue'
+import { mapGetters, mapActions } from 'vuex'
 
   export default {
   components: { logo },
+  computed: {
+        ...mapGetters(['loggedOut']),   
+  },
+
     data: () => ({
       drawer: false,
       group: null,
